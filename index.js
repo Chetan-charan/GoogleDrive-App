@@ -8,23 +8,18 @@ import AWS from "aws-sdk";
 import nodemailer from "nodemailer";
 import multer from "multer";
 import multerS3 from "multer-s3";
-import server from "http";
+
 
 
 
   
 dotenv.config();
 
-export const app = express()
-server.createServer(app);
+ const app = express()
 
-const corsOptions ={
-    origin:'*', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200,
- }
-
- app.use(cors(corsOptions));
+ app.use(cors({
+     origin: 'https://confident-hypatia-be56de.netlify.app/'
+ }));
 
 app.use(express.json()) 
 
