@@ -218,7 +218,7 @@ app.post("/login", async (req, res) => {
     const lastName = user.lastName;
     const isPasswordMatch = await bcrypt.compare(password, storedPassword);
     if (isPasswordMatch) {
-        const token = jwt.sign({ email, firstName, lastName }, process.env.SECRET_KEY); //id - give a unique value  //issue token only when password is matched
+        const token = await jwt.sign({ email, firstName, lastName }, process.env.SECRET_KEY); //id - give a unique value  //issue token only when password is matched
         res.send({ message: "Successfully logged In !!!", token: token }); //use this token in frontend         
     } else {
         res.status(401).send({ message: "Invalid Credentials", success: "false" }); //if password is wrong
@@ -226,7 +226,7 @@ app.post("/login", async (req, res) => {
 
 });
 
-app.get("/userFiles/:username", async (req, res) => {
+app.get("/userFiles/:username",auth, async (req, res) => {
 
     const { username }= req.params;
 
