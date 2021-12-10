@@ -30,7 +30,7 @@ const PORT = process.env.PORT;
 
 const MONGO_URL = process.env.MONGO_URL;  
 
-AWS.config.update({secretAccessKey: process.env.secretAccessKey,accessKeyId: process.env.accessKeyId,region: process.env.region});
+AWS.config.update({secretAccessKey: process.env.aws_secret_access_key,accessKeyId: process.env.aws_access_key_id,region: process.env.region});
 
 export var s3 = new AWS.S3({apiVersion: '2006-03-01'});
 
