@@ -205,7 +205,7 @@ app.post("/login", async (req, res) => {
     const result = await client.db("b28wd").collection("driveUsers").findOneAndUpdate({email: email}, { $unset : {token: 1 } });
 
     const user = await getUserbyName(email);
-    if (!user) { //if user doesnt exist
+    if (!user) { //if user doesnt exis
         res.status(401).send({ message: "Invalid credentials", success: "false" });
         return;
     }
@@ -218,7 +218,7 @@ app.post("/login", async (req, res) => {
     const lastName = user.lastName;
     const isPasswordMatch = await bcrypt.compare(password, storedPassword);
     if (isPasswordMatch) {
-        const token = await jwt.sign({ email, firstName, lastName }, process.env.SECRET_KEY); //id - give a unique value  //issue token only when password is matched
+        const token =  jwt.sign({ email, firstName, lastName }, process.env.SECRET_KEY); //id - give a unique value  //issue token only when password is matched
         res.send({ message: "Successfully logged In !!!", token: token }); //use this token in frontend         
     } else {
         res.status(401).send({ message: "Invalid Credentials", success: "false" }); //if password is wrong
