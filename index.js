@@ -42,8 +42,9 @@ const auth = (req,res,next) => {
     }catch(err){
         res.status(401).send({error: err.message})          
     }  
+  
 }
-
+app.options('*', cors());
 
 app.get("/fileView/:key",(req,res) =>{
 
