@@ -18,7 +18,7 @@ dotenv.config();
  const app = express()
 
  app.use(cors({
-     origin: 'https://confident-hypatia-be56de.netlify.app/'
+     origin: 'https://confident-hypatia-be56de.netlify.app/*'
  }));
 
 app.use(express.json()) 
