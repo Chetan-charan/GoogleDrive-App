@@ -1,19 +1,29 @@
-import  express from "express";
-import { MongoClient } from "mongodb";
-import dotenv from 'dotenv';
-import cors from "cors";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
-import AWS from "aws-sdk";
-import nodemailer from "nodemailer";
-import multer from "multer";
-import multerS3 from "multer-s3";
+const { MongoClient } = require('mongodb');
+const dotenv = require('dotenv');
+const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const AWS = require( "aws-sdk");
+const nodemailer = require ("nodemailer");
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const express = require('express');
+const app = express();
 
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
 
   
 dotenv.config();
 
 export const app = express()
+
+
 
 const corsOptions ={
     origin:'*', 
