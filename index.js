@@ -226,7 +226,7 @@ app.post("/login", async (req, res) => {
 
 });
 
-app.get("/userFiles/:username", auth, async (req, res) => {
+app.get("/userFiles/:username", async (req, res) => {
 
     const { username }= req.params;
 
