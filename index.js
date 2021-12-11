@@ -262,7 +262,7 @@ app.post("/activateAccount", (req, res) => {
             const userActivate1 = await client.db("b28wd").collection("driveUsers").findOne({ token: token });
             const userActivate = await client.db("b28wd").collection("driveUsers").findOneAndUpdate({ token: token }, { $set: { status: "active" } });
             // const userActivate2 = await client.db("b28wd").collection("driveUsers").findOneAndUpdate({ token: token }, { $set: { files: [] } });
-
+            const result = await client.db("b28wd").collection("driveUsers").findOneAndUpdate({token: token}, { $set : {files: [] } });
             res.json({ message: "Sign up successful" });
 
 
