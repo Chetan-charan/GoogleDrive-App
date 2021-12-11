@@ -17,10 +17,7 @@ dotenv.config();
 
  const app = express()
 
- app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
-});
+
 
 app.use(cors());
 app.use(express.json()) 
@@ -44,7 +41,7 @@ const auth = (req,res,next) => {
     }  
   
 }
-app.options('*', cors());
+
 
 app.get("/fileView/:key",(req,res) =>{
 
@@ -233,10 +230,10 @@ app.get("/userFiles/:username",auth, async (req, res) => {
 
     const user = await getUserbyName(username);
 
-    const bucketName = user.bucket;
+    
 
     var bucketParams = {
-        Bucket: bucketName,
+        Bucket: process.env.BUCKET_NAME,
     };
 
 
